@@ -22,3 +22,15 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+        
+   deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Render
+        uses: render-examples/render-deploy@v1
+        with:
+          api_key: ${{ secrets.RENDER_API_KEY }}
+          service_id: YOUR_RENDER_SERVICE_ID
